@@ -5,7 +5,7 @@ const csv = require('csv-parser');
 const studentDB = require('./students')
 
 const uri = require('../../config/keys').mongoURI;
-const dbName = 'CS5331-VirtualReality-Fall2020'
+const dbName = 'CS5331-VirtualReality-Fall2020-p1'
 let client = null
 let studentConn = null
 let scoreConn = null
