@@ -34,16 +34,18 @@ async function getPresenterAvgScore(id) {
     let comments = data.length > 0 ? []: null
     let avg = data.length > 0 ? {}: null
     let keys = data.length > 0 ? Object.keys(data[0]).filter(key => key.indexOf('criteria_') === 0) : []
-
+    let flatData = {};
     // Calculate average
     for (let key of keys) {
-        avg.presenter_id = data[0].presenter_id
-        avg[key] = 0
+        avg.presenter_id = data[0].presenter_id;
+        avg[key] = 0;
+        flatData[key] =[]
     }
 
     data.forEach(e => {
         for (let key of keys) {
-            avg[key] += e[key]
+            avg[key] += e[key];
+            flatData[key].push(e[key])
         }
     })
 
@@ -62,6 +64,7 @@ async function getPresenterAvgScore(id) {
 
     return {
         avg: avg ? avg : "",
+        data: flatData,
         count: data.length,
         comments: comments ? comments : ""
     }
