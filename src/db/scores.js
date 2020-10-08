@@ -1,5 +1,6 @@
 const DB = require('./index')
 const dbName = require('./index').dbName
+const studentDB = require('./students')
 
 async function createScore(scores) {
     try {
@@ -29,8 +30,8 @@ async function getScores(filter = {}) {
 
 async function getPresenterAvgScore(id) {
     const data = await getScores({presenter_id: id})
-
-    console.log('data ', data);
+    const student = await studentDB.getStudents();
+    student.sort((a,b)=>a.studentid-b.studentid);
     let comments = data.length > 0 ? []: null
     let avg = data.length > 0 ? {}: null
     let keys = data.length > 0 ? Object.keys(data[0]).filter(key => key.indexOf('criteria_') === 0) : []
@@ -45,7 +46,7 @@ async function getPresenterAvgScore(id) {
     data.forEach(e => {
         for (let key of keys) {
             avg[key] += e[key];
-            flatData[key].push(e[key])
+            flatData[key].push({level:student[e.user_id].level,value:e[key]});
         }
     })
 
