@@ -15,8 +15,8 @@ function createClient() {
     client.connect().then(async res => {
         const db = client.db(dbName)
         studentConn = db.collection('new-group')
-        scoreConn = db.collection('new-group-p2-final')
-        // scoreConn = db.collection('test-group-p2-final')
+        // scoreConn = db.collection('new-group-p2-final')
+        scoreConn = db.collection('test-group-p2-final')
         console.log('Connected to DB')
         // seedStudents()
     }).catch(err => console.log('Failed to connect to DB -' +
