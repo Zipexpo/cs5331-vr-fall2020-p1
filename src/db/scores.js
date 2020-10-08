@@ -29,7 +29,7 @@ async function getScores(filter = {}) {
 }
 
 async function getPresenterAvgScore(id) {
-    const data = await getScores({presenter_id: id})
+    let data = await getScores({presenter_id: id})
     const student = await studentDB.getStudents();
     student.sort((a,b)=>a.studentid-b.studentid);
     let comments = data.length > 0 ? []: null
@@ -42,11 +42,11 @@ async function getPresenterAvgScore(id) {
         avg[key] = 0;
         flatData[key] =[]
     }
-
+    data = data.filter(d=>student[d.user_id-1]);
     data.forEach(e => {
         for (let key of keys) {
             avg[key] += e[key];
-            flatData[key].push({level:student[e.user_id].level,value:e[key]});
+            flatData[key].push({level:student[e.user_id-1].level,value:e[key]});
         }
     })
 
