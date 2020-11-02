@@ -11,6 +11,12 @@ async function getStudents(filter = {}) {
     return r
 }
 
+async function getStudentList(filter = {}) {
+    const client = DB.studentListConn()
+    const r = await client.find(filter).toArray()
+    return r
+}
+
 async function putStudent(id, student) {
     try {
         const client = DB.studentConn()
@@ -65,6 +71,7 @@ async function seedStudents() {
 
 module.exports = {
     getStudents: getStudents,
+    getStudentList: getStudentList,
     putStudent: putStudent,
     createStudents: createStudents,
     removeStudents: removeStudents,
