@@ -28,7 +28,8 @@ async function getScores(filter = {}) {
 }
 
 async function getPresenterAvgScore(id,students) {
-    let data = await getScores({presenter_id: id})
+    let data = await getScores({presenter_id: id});
+    console.log(data)
     students.sort((a,b)=>a.studentid-b.studentid);
     let comments = data.length > 0 ? []: null
     let avg = data.length > 0 ? {}: null
