@@ -18,7 +18,7 @@ function createClient() {
         studentConn = db.collection('new-group');
         studentListConn = db.collection('studentlist');
         // scoreConn = db.collection('result-p2-final');
-        scoreConn = db.collection('new-group-p2-final');
+        scoreConn = db.collection('new-group-p1-final');
         // scoreConn = db.collection('test-group-p2-final')
         console.log('Connected to DB')
         // seedStudents()
